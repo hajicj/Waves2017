@@ -17,7 +17,7 @@ curl -H "Content-Type: application/json" -X POST -d '{"text":"My thoughts are wi
 
 ```
 $ cd trumpet.pipes
-$ node api.js
+$ node server.js
 ```
 
 # watch the final output
