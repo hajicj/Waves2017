@@ -1,3 +1,38 @@
+body{
+    font-family: "Helvetica Neue";    
+}
+
+#background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #3f3f3f; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover, #3f3f3f 0%, #000 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover, #3f3f3f 0%,#000 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center, #3f3f3f 0%,#000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f3f3f', endColorstr='#000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+#intro{
+    position: absolute;
+    top: 45%;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+#intro input{
+    border: none;
+    font-size: 40px;
+    border-radius: 0;
+    width: 700px;
+    padding: 30px;
+    background: rgba(255,255,255,.6);
+}
+
+
 #waveform{
     position: absolute;
     top: 50%;
@@ -9,4 +44,24 @@
     position: relative;
     top: -200px;
     transition: .05s;
+}
+
+#tweet,
+#intro h1{
+    position: absolute;
+    bottom: 100px;
+    left: 50px;
+    right: 50px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    font-size: 45px;
+    text-shadow: 0 5px 20px #000;
+    letter-spacing: 2px;
+}
+
+#user{
+    color: rgba(255,255,255,.7);
+    font-size: 35px;
+    margin-bottom: 20px;
 }

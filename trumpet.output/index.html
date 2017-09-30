@@ -6,10 +6,21 @@
         <script src="js/vendor/wavesurfer.js"></script>
     </head>
     <body>
+        <div id="background"></div>
         <section id="viz">
             <div id="waveform"></div>
         </section>
         <audio id="audio" style="dislay: none"></audio>
+        <div id="tweet"><div id="user"></div> <div id="text"></div></div>
+        <div id="intro">
+            <h1>Read tweets from...</h1>
+            <input type="text" value="realdonaldtrump" id="user-input" autofocus="autofocus" />
+        </div>
+        <script>
+            var app = {};
+        </script>
+        <script src="js/app/utils.js"></script>
+        <script src="js/app/visualizer.js"></script>
         <script src="js/app.js"></script>
     </body>
 </html>
