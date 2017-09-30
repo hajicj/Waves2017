@@ -1,5 +1,14 @@
 <?php
 
+$username = @$argv[1];
+
+$cachefile = dirname(__FILE__) . "/cache/tweets_$username.json";
+
+if( file_exists($cachefile) ){
+    echo file_get_contents($cachefile);
+    die;
+}
+
 require "vendor/autoload.php";
 
 use Abraham\TwitterOAuth\TwitterOAuth;
@@ -13,7 +22,6 @@ $access_token_secret = "6ULNn4MtbTXJeScaDfFSYYPRKRj1fCm0x8p8a8tr8pogr";
 $connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $access_token, $access_token_secret);
 $content = $connection->get("account/verify_credentials");
 
-$statuses = $connection->get("statuses/user_timeline", ["count" => 200, "screen_name" => 
-"realdonaldtrump", "exclude_replies" => true]);
+$statuses = $connection->get("statuses/user_timeline", ["count" => 200, "screen_name" => $username, "exclude_replies" => true]);
 
-file_put_contents("cache/tweets_realdonaldtrump.json", json_encode($statuses));
+file_put_contents($cachefile, json_encode($statuses));

@@ -2,6 +2,7 @@ const tweets = require("../trumpet.input/cache/tweets_realdonaldtrump.json");
 const api = require("./api");
 const http = require("http");
 const url = require("url");
+const { exec } = require('child_process');
 
 
 /*
@@ -21,30 +22,10 @@ x Step 5:
 */
 
 
-var outputData = {
-    tweets: [
-        {
-            "text": "Arianna hoff is whatever.....",
-            "audio": "first.mp3",
-            "user": "realdonaldtrump",
-            "length": 10
-        },
-        {
-            "text": "Hello, I am Daniel",
-            "audio": "second.mp3",
-            "user": "realdonaldtrump",
-            "length": 2
-        }
-    ]
-};
-
 /*api("/api/analysis", 5000, {text: tweets[0].text, lang: "en"}, function(res){
     console.log(res);
 });*/
 
-/*tweets.forEach(function(tweet, index){
-    console.log(tweet.text);
-});*/
 
 
 http.createServer(function (req, res) {
@@ -56,9 +37,66 @@ http.createServer(function (req, res) {
   var parts = url.parse(req.url, true);
   var query = parts.query;
   
-  // query.username  
+  /*if( ! /[^a-zA-Z0-9]/.test(query.username) ){
+      console.log("invalid username");
+      return;
+  }*/
   
-  res.end(JSON.stringify(outputData));
+  exec('php ../trumpet.input/auth.php ' + query.username, {maxBuffer: 1024 * 50000}, (err, stdout, stderr) => {
+      if (err) {
+          console.log("err", err);
+          return;
+      }
+      
+      // stdout = tweets
+      
+
+      /*tweets.forEach(function(tweet, index){
+          
+          // push each tweet to nlp
+          
+          // send response to trumpet.valves
+          
+          // prepare response to format:
+
+          var outputData = {
+              tweets: [
+                  {
+                      "text": "Arianna hoff is whatever.....",
+                      "audio": "first.mp3",
+                      "user": "realdonaldtrump",
+                      "length": 10
+                  },
+                  {
+                      "text": "Hello, I am Daniel",
+                      "audio": "second.mp3",
+                      "user": "realdonaldtrump",
+                      "length": 2
+                  }
+              ]
+          };
+          
+          res.end(JSON.stringify(outputData));
+      });*/
+  
+      res.end(JSON.stringify({
+              tweets: [
+                  {
+                      "text": "Arianna hoff is whatever.....",
+                      "audio": "first.mp3",
+                      "user": "realdonaldtrump",
+                      "length": 10
+                  },
+                  {
+                      "text": "Hello, I am Daniel",
+                      "audio": "second.mp3",
+                      "user": "realdonaldtrump",
+                      "length": 2
+                  }
+              ]
+          }));
+    
+  });
   
 }).listen(8000);
 
