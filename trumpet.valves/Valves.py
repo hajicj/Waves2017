@@ -25,4 +25,4 @@ if __name__ == "__main__":
                         help="Path to the mp3-file that will be generated")
 
     flags, unparsed = parser.parse_known_args()
-    process_request(base64.decode(flags.json), flags.output_path)
+    process_request(base64.b64decode(flags.json), flags.output_path)
