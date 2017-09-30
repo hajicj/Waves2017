@@ -1,0 +1,78 @@
+[
+  {
+    "start": 0,
+    "end": 3,
+    "text": "This is a tweet",
+    "relevance": 0.5,
+    "keywords": [
+      {
+        "relevance": 0.9,
+        "word": "tweet",
+        "word2vec": [
+          0.1,
+          0.2,
+          0.5,
+          0.6
+        ]
+      }
+    ],
+    "music ": [
+      {
+        "sample": "business-freedom_gjrmyusd.mp3",
+        "similarity": 0.665
+      },
+      {
+        "sample": "cheerful-morning-full_m1txke4_.mp3",
+        "similarity": 0.567
+      }
+    ],
+    "voice": [
+      {
+        "sample": "Stephanie",
+        "similarity": 0.876
+      },
+      {
+        "sample": "Horst",
+        "similarity": "0.967"
+      }
+    ]
+  },
+  {
+    "start": 3,
+    "end": 5,
+    "text": "of some guy",
+    "relevance": 0.7,
+    "keywords": [
+      {
+        "relevance": 0.9,
+        "word": "guy",
+        "word2vec": [
+          0.1,
+          0.3,
+          0.5,
+          0.6
+        ]
+      }
+    ],
+    "music ": [
+      {
+        "sample": "business-freedom_gjrmyusd.mp3",
+        "similarity": 0.665
+      },
+      {
+        "sample": "cheerful-morning-full_m1txke4_.mp3",
+        "similarity": 0.567
+      }
+    ],
+    "voice": [
+      {
+        "sample": "Stephanie",
+        "similarity": 0.876
+      },
+      {
+        "sample": "Horst",
+        "similarity": "0.967"
+      }
+    ]
+  }
+]
