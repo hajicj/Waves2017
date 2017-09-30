@@ -1,4 +1,5 @@
 import argparse
+import base64
 
 import AudioGenerator
 import BackgroundSelector
@@ -19,9 +20,9 @@ def process_request(json: str, output_path: str) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--json", type=str, default="Test.json",
-                        help="The JSON content to be parsed that must contain a list of ")
+                        help="The Base64-encoded JSON content to be parsed that must contain a list of ")
     parser.add_argument("--output_path", type=str, default="Output.mp3",
                         help="Path to the mp3-file that will be generated")
 
     flags, unparsed = parser.parse_known_args()
-    process_request(flags.json, flags.output_path)
+    process_request(base64.decode(flags.json), flags.output_path)
