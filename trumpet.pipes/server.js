@@ -25,7 +25,6 @@ x Step 5:
     console.log(res);
 });*/
 
-var fixedJson = ' [   {     "py/object": "__main__.TwitterSnippet",     "start": 0,     "end": 3,     "text": "This is a tweet",     "relevance": 0.5,     "keywords": [       {         "py/object": "__main__.Keyword",         "word": "tweet",         "relevance": 0.9,         "word2vec": [           0.1,           0.2,           0.5,           0.6         ]       }     ],     "background_samples": [       {         "py/object": "__main__.BackgroundSample",         "filename": "business-freedom_gjrmyusd.mp3",         "similarity": 0.665       },       {         "py/object": "__main__.BackgroundSample",         "filename": "cheerful-morning-full_m1txke4_.mp3",         "similarity": 0.567       }     ],     "voices": [       {         "py/object": "__main__.Voice",         "speaker": "Stephanie",         "similarity": 0.876       },       {         "py/object": "__main__.Voice",         "speaker": "Horst",         "similarity": 0.967       }     ]   },   {     "py/object": "__main__.TwitterSnippet",     "start": 3,     "end": 5,     "text": "of some guy",     "relevance": 0.7,     "keywords": [       {         "py/object": "__main__.Keyword",         "word": "guy",         "relevance": 0.9,         "word2vec": [           0.1,           0.3,           0.5,           0.6         ]       }     ],     "background_samples": [       {         "py/object": "__main__.BackgroundSample",         "filename": "business-freedom_gjrmyusd.mp3",         "similarity": 0.665       },       {         "py/object": "__main__.BackgroundSample",         "filename": "cheerful-morning-full_m1txke4_.mp3",         "similarity": 0.567       }     ],     "voices": [       {         "py/object": "__main__.Voice",         "speaker": "Stephanie",         "similarity": 0.876       },       {         "py/object": "__main__.Voice",         "speaker": "Horst",         "similarity": 0.967       }     ]   } ]';
 
 
 http.createServer(function (req, res) {
@@ -62,7 +61,9 @@ http.createServer(function (req, res) {
           
           // prepare response to format:
           // console.log(tweet.id);
-          var lengthSeconds = execSync('python3 ../trumpet.valves/Valves.py --json \'' + fixedJson + '\' --output_path ../trumpet.output/mp3/' + tweet.id + ".mp3");
+          var fixedJson = '[{"py/object": "__main__.TwitterSnippet","start": 0,"end": 3,"text": "' + tweet.text + '","relevance": 0.5,"keywords": [{"py/object": "__main__.Keyword","word": "tweet","relevance": 0.9,"word2vec": [0.1,0.2,0.5,0.6]}],"background_samples": [{"py/object": "__main__.BackgroundSample","filename": "business-freedom_gjrmyusd.mp3","similarity": 0.665}],"voices": [{"py/object": "__main__.Voice","speaker": "Alex","similarity": 0.876}]}]';
+          
+          var lengthSeconds = execSync('python3 ../trumpet.valves/Valves.py --text \'' + fixedJson + '\' --output_path /Users/phillip/web/waves/trumpet.output/mp3/' + tweet.id + ".mp3");
           
           outputData.tweets.push({
               "text": tweet.text,

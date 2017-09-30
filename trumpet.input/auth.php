@@ -22,6 +22,6 @@ $access_token_secret = "6ULNn4MtbTXJeScaDfFSYYPRKRj1fCm0x8p8a8tr8pogr";
 $connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $access_token, $access_token_secret);
 $content = $connection->get("account/verify_credentials");
 
-$statuses = $connection->get("statuses/user_timeline", ["count" => 200, "screen_name" => $username, "exclude_replies" => true]);
+$statuses = $connection->get("statuses/user_timeline", ["count" => 5, "screen_name" => $username, "exclude_replies" => true]);
 
 file_put_contents($cachefile, json_encode($statuses));
