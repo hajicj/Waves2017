@@ -61,7 +61,10 @@ http.createServer(function (req, res) {
           
           // prepare response to format:
           // console.log(tweet.id);
-          var fixedJson = '[{"py/object": "__main__.TwitterSnippet","start": 0,"end": 3,"text": "' + tweet.text + '","relevance": 0.5,"keywords": [{"py/object": "__main__.Keyword","word": "tweet","relevance": 0.9,"word2vec": [0.1,0.2,0.5,0.6]}],"background_samples": [{"py/object": "__main__.BackgroundSample","filename": "business-freedom_gjrmyusd.mp3","similarity": 0.665}],"voices": [{"py/object": "__main__.Voice","speaker": "Alex","similarity": 0.876}]}]';
+          
+          var ttext = new Buffer(tweet.text).toString('base64');
+          
+          var fixedJson = '[{"py/object": "__main__.TwitterSnippet","start": 0,"end": 3,"text": "' + ttext + '","relevance": 0.5,"keywords": [{"py/object": "__main__.Keyword","word": "tweet","relevance": 0.9,"word2vec": [0.1,0.2,0.5,0.6]}],"background_samples": [{"py/object": "__main__.BackgroundSample","filename": "business-freedom_gjrmyusd.mp3","similarity": 0.665}],"voices": [{"py/object": "__main__.Voice","speaker": "Alex","similarity": 0.876}]}]';
           
           var lengthSeconds = execSync('python3 ../trumpet.valves/Valves.py --text \'' + fixedJson + '\' --output_path /Users/phillip/web/waves/trumpet.output/mp3/' + tweet.id + ".mp3");
           
