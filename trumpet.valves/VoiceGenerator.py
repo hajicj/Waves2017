@@ -14,7 +14,7 @@ def call_say_command(voice_snippets: List[VoiceSnippet]) -> str:
         speaker = voice_snippet.speaker
 
     output_path = "/Users/phillip/web/waves/audiodata/say.aiff"
-    say_command = 'say -v {0} -r 120 "{1}" -o {2}'.format(speaker, text, output_path)
+    say_command = 'say -v {0} "{1}" -o {2}'.format(speaker, text, output_path)
     print("Executing: " + say_command)
     os.system(say_command)
 
