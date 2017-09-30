@@ -3,11 +3,17 @@ from __future__ import print_function, unicode_literals
 import os
 import re
 from nltk import TweetTokenizer
+from nltk.corpus import stopwords
 import codecs
+
 
 __version__ = "0.0.1"
 __author__ = "Jan Hajic jr."
 
+
+domain_specific_stopwords = [
+    'full', 'music', 'the', 'piano', 'loop', 'and', 'acoustic'
+]
 
 ##############################################################################
 
@@ -45,3 +51,10 @@ def tokenize_tweets(filename, dest_folder):
                 filter(lambda word: ' ' not in word, tweet)
                 out_fs.write(id+'\t'+timestamp+'\t'+username+'\t'+tweet+'\n')
 
+
+def filter_stopwords(words):
+    words = [w for w in words
+             if w not in stopwords.words('english')]
+    words = [w for w in words
+             if w not in domain_specific_stopwords]
+    return words
