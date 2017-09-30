@@ -15,7 +15,7 @@ __author__ = "Jan Hajic jr."
 
 
 if 'WAVES_MUSIC_ROOT' not in os.environ:
-    os.environ['WAVES_MUSIC_ROOT'] = '~/Waves2017/soundfiles'
+    os.environ['WAVES_MUSIC_ROOT'] = '/Users/hajicj/Waves2017/soundfiles'
 
 
 ##############################################################################
