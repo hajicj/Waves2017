@@ -39,7 +39,7 @@
       {
         "py/object": "__main__.Voice",
         "speaker": "Horst",
-        "similarity": "0.967"
+        "similarity": 0.967
       }
     ]
   },
@@ -83,7 +83,7 @@
       {
         "py/object": "__main__.Voice",
         "speaker": "Horst",
-        "similarity": "0.967"
+        "similarity": 0.967
       }
     ]
   }
