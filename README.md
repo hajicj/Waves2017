@@ -2,6 +2,12 @@
 Making the Twitter birds sing...
 
 ```
+# start the word2vec-api service:
+# - Go to the word2vec-api directory,
+# - Run:
+
+python path/to/word2vec-api.py --model path/to/model/glove.twitter.27B.200d.header.txt --port 9001
+
 # start NLP-Backend
 
 FLASK_APP=nlp/server.py flask run
