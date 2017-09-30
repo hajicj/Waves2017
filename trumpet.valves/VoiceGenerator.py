@@ -1,11 +1,27 @@
 from typing import List
 
+import os
+
 from TwitterSnippet import VoiceSnippet
 
 
 def call_say_command(voice_snippets: List[VoiceSnippet]) -> str:
-    # TODO Call console: say -v Alex -r 100 "blablabla." -o audiodata/out-xxx.aiff
-    return "speech.aiff"
+    for i in range(len(voice_snippets)):
+        voice_snippet = voice_snippets[i]
+        say_command = 'say -v {0} -r 100 "{1}" -o audiodata/{2}.aiff'.format(voice_snippet.speaker,
+                                                                             voice_snippet.text,
+                                                                             i)
+        print("Executing: " + say_command)
+        os.system(say_command)
+
+    files = []
+    for i in range(len(voice_snippets)):
+        files.append("-i audiodata/{0}.aiff".format(i))
+    concatenate_command = "ffmpeg {0} -filter_complex '[0:0][1:0]concat=n=10:v=0:a=1[out]'  -map '[out]' -strict -2 -y audiodata/output.mp3".format(
+        str.join(" ", files))
+    print("Executing: " + concatenate_command)
+
+    return "audiodata/output.mp3"
 
 
 if __name__ == "__main__":
