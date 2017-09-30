@@ -1,6 +1,12 @@
 from typing import List
 
 
+class VoiceSnippet:
+    def __init__(self, speaker: str, text: str) -> None:
+        self.text = text
+        self.speaker = speaker
+
+
 class Voice:
     def __init__(self, speaker: str, similarity: float) -> None:
         self.similarity = similarity
