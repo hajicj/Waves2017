@@ -1,5 +1,21 @@
 var tweets = require("../trumpet.input/cache/tweets_realdonaldtrump.json"),
     http = require("http");
+    
+/*
+
+Step 1:
+    Get Twitter Feed from trumpet.input
+Step 2:
+    Post each Tweet to trumpet.mouthpiece (NLP)
+    and get sentiment as json
+Step 3:
+    Post sentiment json to trumpet.valve
+    and get final mp3
+Step 4:
+    Post tweets+paths to mp3s to trumpet.output
+    
+    
+*/
 
 var api = function(path, port, data, callback){
     
