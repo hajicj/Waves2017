@@ -1,0 +1,12 @@
+#waveform{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+}
+
+#waveform > wave{
+    position: relative;
+    top: -200px;
+    transition: .05s;
+}

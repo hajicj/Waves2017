@@ -1,0 +1,12 @@
+{
+    "name": "waves/trumpet",
+    "authors": [
+        {
+            "name": "Phillip Dornauer",
+            "email": "phillip.dornauer@gmail.com"
+        }
+    ],
+    "require": {
+        "abraham/twitteroauth": "^0.7.4"
+    }
+}
