@@ -1,6 +1,7 @@
 ;(function(app){
     
     app.data = {};
+    app.username = null;
     
     app.init = function(){
         
@@ -19,16 +20,27 @@
     app.process = function(tweet){
         app.visualizer.loadAudio("mp3/" + tweet.audio);
         $("#text").html(tweet.text);
-        $("#user").html("@" + tweet.user + " says:");
+        $("#user").html("@" + app.username + " says:");
     };
     
-    app.socket.onMessage(function(data){
-        app.data = JSON.parse(data);
-        
-        app.init();
-    });
+    app.setUsername = function(username){
+        this.username = username;
+    };
     
-    //app.visualizer.loadAudio("mp3/demo.mp3");
+    $("#user-input").keypress(function(e) {
+        if(e.which == 13) {
+            app.setUsername($("#user-input").val());
+            $("#intro").fadeOut(1000);
+            
+            $.get("http://localhost:8000/?username=" + app.username, function(data){
+                app.data = data;
+                
+                setTimeout(function(){
+                    app.init();
+                }, 1000);
+            }); 
+        }
+    });
     
 })(app);
 

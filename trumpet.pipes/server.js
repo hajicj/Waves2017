@@ -1,7 +1,7 @@
 const tweets = require("../trumpet.input/cache/tweets_realdonaldtrump.json");
-const WebSocket = require('ws');
-const wss = new WebSocket.Server({ port: 7000 });
 const api = require("./api");
+const http = require("http");
+const url = require("url");
 
 
 /*
@@ -47,12 +47,18 @@ var outputData = {
 });*/
 
 
-wss.on('connection', function connection(ws) {
-    /*ws.on('message', function incoming(message) {
-        console.log('received: %s', message);
-    });*/
+http.createServer(function (req, res) {
     
-    ws.send(JSON.stringify(outputData));
-});
-
+  res.writeHead(200, {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+  });
+  var parts = url.parse(req.url, true);
+  var query = parts.query;
+  
+  // query.username  
+  
+  res.end(JSON.stringify(outputData));
+  
+}).listen(8000);
 

@@ -15,6 +15,23 @@ body{
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f3f3f', endColorstr='#000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
+#intro{
+    position: absolute;
+    top: 45%;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+#intro input{
+    border: none;
+    font-size: 40px;
+    border-radius: 0;
+    width: 700px;
+    padding: 30px;
+    background: rgba(255,255,255,.6);
+}
+
 
 #waveform{
     position: absolute;
@@ -29,7 +46,8 @@ body{
     transition: .05s;
 }
 
-#tweet{
+#tweet,
+#intro h1{
     position: absolute;
     bottom: 100px;
     left: 50px;
