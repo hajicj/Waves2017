@@ -6,8 +6,8 @@
     "relevance": 0.5,
     "keywords": [
       {
-        "relevance": 0.9,
         "word": "tweet",
+        "relevance": 0.9,
         "word2vec": [
           0.1,
           0.2,
@@ -16,23 +16,23 @@
         ]
       }
     ],
-    "music ": [
+    "background_samples": [
       {
-        "sample": "business-freedom_gjrmyusd.mp3",
+        "filename": "business-freedom_gjrmyusd.mp3",
         "similarity": 0.665
       },
       {
-        "sample": "cheerful-morning-full_m1txke4_.mp3",
+        "filename": "cheerful-morning-full_m1txke4_.mp3",
         "similarity": 0.567
       }
     ],
-    "voice": [
+    "voices": [
       {
-        "sample": "Stephanie",
+        "speaker": "Stephanie",
         "similarity": 0.876
       },
       {
-        "sample": "Horst",
+        "speaker": "Horst",
         "similarity": "0.967"
       }
     ]
@@ -44,8 +44,8 @@
     "relevance": 0.7,
     "keywords": [
       {
-        "relevance": 0.9,
         "word": "guy",
+        "relevance": 0.9,
         "word2vec": [
           0.1,
           0.3,
@@ -54,23 +54,23 @@
         ]
       }
     ],
-    "music ": [
+    "background_samples": [
       {
-        "sample": "business-freedom_gjrmyusd.mp3",
+        "filename": "business-freedom_gjrmyusd.mp3",
         "similarity": 0.665
       },
       {
-        "sample": "cheerful-morning-full_m1txke4_.mp3",
+        "filename": "cheerful-morning-full_m1txke4_.mp3",
         "similarity": 0.567
       }
     ],
-    "voice": [
+    "voices": [
       {
-        "sample": "Stephanie",
+        "speaker": "Stephanie",
         "similarity": 0.876
       },
       {
-        "sample": "Horst",
+        "speaker": "Horst",
         "similarity": "0.967"
       }
     ]
