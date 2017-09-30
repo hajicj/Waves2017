@@ -4,6 +4,7 @@ from TwitterSnippet import VoiceSnippet
 
 
 def call_say_command(voice_snippets: List[VoiceSnippet]) -> str:
+    # TODO Call console: say -v Alex -r 100 "blablabla." -o audiodata/out-xxx.aiff
     return "speech.aiff"
 
 
