@@ -1,6 +1,7 @@
 from __future__ import print_function, unicode_literals, division
 
 import logging
+import os
 import pprint
 import subprocess
 
@@ -13,33 +14,12 @@ from flask import Flask, request, json
 from nltk.corpus import stopwords
 
 from .music import create_music_database
-from .word2vec import query_word2vec_api, query_word2vec_maxn
-
-app = Flask(__name__)
-
-
-@app.route('/nlp/analysis', methods=['GET', 'POST'])
-def analysis():
-    request_json = request.get_json()
-
-    if request_json is not None:
-        text = request_json.get('text')
-        lang = request_json.get('lang')
-
-        ## TODO: do some fancy stuff...
-
-        return json.jsonify({
-            'similar_words': None,
-            'text': text
-            })
-
-    return json.jsonify({'error': 'please provide a tweet as json'})
 
 
 ##############################################################################
 
 
-class Analysis():
+class Analysis:
 
     def __init__(self,
                  music_database=None,
@@ -56,13 +36,14 @@ class Analysis():
             similarity_fn_kwargs = dict()
         self.similarity_fn_kwargs = similarity_fn_kwargs
 
-        # Getting rid of div by zero
+        # Getting rid of div by zero..?
         self._eps = 0.000000000001
 
     def process(self, text):
         return self.process_sentiment(text)
 
     def process_word2vec(self, text):
+        # Unused.
         tokens = self.tokenize(text)
         segments = self.segment(tokens)
 
@@ -103,7 +84,11 @@ class Analysis():
         # return json.jsonify({})
 
     def process_sentiment(self, text):
-        blob = textblob.TextBlob(text)
+
+        tokens = self.tokenize(text)
+        clean_text = ' '.join(tokens)
+
+        blob = textblob.TextBlob(clean_text)
         qp = blob.polarity
         qs = blob.subjectivity
 
@@ -116,8 +101,39 @@ class Analysis():
         sorted_similarities = sorted(similarities.items(),
                                      key=lambda kv: kv[1],
                                      )
-
         print('Similarities:\n{0}'.format(pprint.pformat(sorted_similarities[:10])))
+
+        # Just one segment
+        output_total = {
+            "py/object": "__main__.TwitterSnippet",
+            "start": 0,
+            "end": len(text.split()),
+            "text": text,
+            "relevance": 1.0,
+
+            "keywords": [
+                {"py/object": "__main__.Keyword",
+                 "word": k,
+                 "relevance": 1.0,
+                 "word2vec": [0.1, 0.2, 0.3, 0.4, 0.5]}
+            for k in tokens],
+
+            "background_samples": [
+                {"py/object": "__main__.BackgroundSample",
+                 "filename": os.path.basename(sfname),
+                 "similarity": snum
+                 }
+            for sfname, snum in sorted_similarities[:3]],
+
+            "voices": [
+                {"py/object": "__main__.Voice",
+                 "speaker": "Stephanie",
+                 "similarity": 1.0}
+            ]
+        }
+
+        output = [output_total]
+        return output
 
     def tokenize(self, text):
         tokens = text.split()
@@ -138,3 +154,29 @@ class Analysis():
             pass
         return s
 
+
+##############################################################################
+
+analysis_module = Analysis()
+
+app = Flask(__name__)
+
+
+
+@app.route('/nlp/analysis', methods=['GET', 'POST'])
+def analysis():
+    request_json = request.get_json()
+
+    if request_json is not None:
+        text = request_json.get('text')
+        lang = request_json.get('lang')
+
+        output = analysis_module.process(text)
+        return json.jsonify(output)
+
+    return json.jsonify({'error': 'please provide a tweet as json'})
+
+
+if __name__ == '__main__':
+    # Run the flask app
+    pass

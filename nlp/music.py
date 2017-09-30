@@ -109,12 +109,13 @@ def get_expanded_sentiment_score(tokens, k=30):
     subjectivity = 0.0
     polarity = 0.0
     n_subj_tokens = 1
+
     for idx in range(len(similar_words)):
         sim_ratio = similarities[idx] / max_sim
         if ((sim_ratio * subjectivities[idx]) ** 2) > (0.3 ** 2):
-            print('Subjective token for tokens {0}: {1} / {2}, {3}'
-                  ''.format(tokens, similar_words[idx],
-                            subjectivities[idx], polarities[idx]))
+            # print('Subjective token for tokens {0}: {1} / {2}, {3}'
+            #       ''.format(tokens, similar_words[idx],
+            #                 subjectivities[idx], polarities[idx]))
 
             subjectivity += subjectivities[idx] * (sim_ratio ** 2)
             polarity += polarities[idx] * (sim_ratio ** 2)
