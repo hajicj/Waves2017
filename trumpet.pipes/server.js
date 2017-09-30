@@ -66,11 +66,12 @@ http.createServer(function (req, res) {
           
           var fixedJson = '[{"py/object": "__main__.TwitterSnippet","start": 0,"end": 3,"text": "' + ttext + '","relevance": 0.5,"keywords": [{"py/object": "__main__.Keyword","word": "tweet","relevance": 0.9,"word2vec": [0.1,0.2,0.5,0.6]}],"background_samples": [{"py/object": "__main__.BackgroundSample","filename": "business-freedom_gjrmyusd.mp3","similarity": 0.665}],"voices": [{"py/object": "__main__.Voice","speaker": "Alex","similarity": 0.876}]}]';
           
-          var lengthSeconds = execSync('python3 ../trumpet.valves/Valves.py --text \'' + fixedJson + '\' --output_path /Users/phillip/web/waves/trumpet.output/mp3/' + tweet.id + ".mp3");
+          console.log("exec");
+          var lengthSeconds = execSync('python3 ../trumpet.valves/Valves.py --json \'' + fixedJson + '\' --output_path /Users/phillip/web/waves/trumpet.output/mp3/' + tweet.id + ".mp3");
           
           outputData.tweets.push({
               "text": tweet.text,
-              "audio": "first.mp3",
+              "audio": tweet.id + ".mp3",
               "length": 10   
           });
           

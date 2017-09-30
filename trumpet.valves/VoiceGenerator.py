@@ -13,8 +13,8 @@ def call_say_command(voice_snippets: List[VoiceSnippet]) -> str:
         text += voice_snippet.text + " "
         speaker = voice_snippet.speaker
 
-    output_path = "/Users/phillip/web/waves/audiodata/{0}.aiff".format(i)
-    say_command = 'say -v {0} -r 100 "{1}" -o {2}'.format(speaker, text, output_path)
+    output_path = "/Users/phillip/web/waves/audiodata/say.aiff"
+    say_command = 'say -v {0} -r 120 "{1}" -o {2}'.format(speaker, text, output_path)
     print("Executing: " + say_command)
     os.system(say_command)
 
