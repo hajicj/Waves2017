@@ -1,8 +1,7 @@
-const tweets = require("../trumpet.input/cache/tweets_realdonaldtrump.json");
 const api = require("./api");
 const http = require("http");
 const url = require("url");
-const { exec } = require('child_process');
+const { exec, execSync } = require('child_process');
 
 
 /*
@@ -48,53 +47,31 @@ http.createServer(function (req, res) {
           return;
       }
       
-      // stdout = tweets
+      tweets = JSON.parse(stdout);
       
-
-      /*tweets.forEach(function(tweet, index){
+      var outputData = {
+          tweets: []
+      };
+      
+      tweets.forEach(function(tweet, index){
           
           // push each tweet to nlp
           
           // send response to trumpet.valves
           
           // prepare response to format:
-
-          var outputData = {
-              tweets: [
-                  {
-                      "text": "Arianna hoff is whatever.....",
-                      "audio": "first.mp3",
-                      "user": "realdonaldtrump",
-                      "length": 10
-                  },
-                  {
-                      "text": "Hello, I am Daniel",
-                      "audio": "second.mp3",
-                      "user": "realdonaldtrump",
-                      "length": 2
-                  }
-              ]
-          };
+          // console.log(tweet.id);
+          // var length = execSync("python ../trumpet.valves/Valves.py --json '{}' --output ");
           
-          res.end(JSON.stringify(outputData));
-      });*/
+          outputData.tweets.push({
+              "text": tweet.text,
+              "audio": "first.mp3",
+              "length": 10   
+          });
+          
+      });
   
-      res.end(JSON.stringify({
-              tweets: [
-                  {
-                      "text": "Arianna hoff is whatever.....",
-                      "audio": "first.mp3",
-                      "user": "realdonaldtrump",
-                      "length": 10
-                  },
-                  {
-                      "text": "Hello, I am Daniel",
-                      "audio": "second.mp3",
-                      "user": "realdonaldtrump",
-                      "length": 2
-                  }
-              ]
-          }));
+      res.end(JSON.stringify(outputData));
     
   });
   
