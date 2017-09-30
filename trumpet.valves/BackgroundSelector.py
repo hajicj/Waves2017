@@ -12,7 +12,7 @@ def select_best_background(twitter_snippets: List[TwitterSnippet]) -> str:
                 best_sample = background_sample.filename
                 highest_similarity = background_sample.similarity
 
-    return best_sample
+    return "/Users/phillip/web/waves/audiodata/" + best_sample
 
 
 if __name__ == "__main__":
