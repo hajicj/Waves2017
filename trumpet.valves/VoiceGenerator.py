@@ -6,6 +6,7 @@ from TwitterSnippet import VoiceSnippet
 
 
 def call_say_command(voice_snippets: List[VoiceSnippet]) -> str:
+    print("SAY COMMAND")
     text = ""
     speaker = ""
     for i in range(len(voice_snippets)):
@@ -14,8 +15,8 @@ def call_say_command(voice_snippets: List[VoiceSnippet]) -> str:
         speaker = voice_snippet.speaker
 
     output_path = "/Users/phillip/web/waves/audiodata/say.aiff"
-    say_command = 'say -v {0} "{1}" -o {2}'.format(speaker, text, output_path)
-    print("Executing: " + say_command)
+    say_command = 'say -v {0} "{1}" -o {2}'.format(speaker, str(text), output_path)
+    print("SAY SAY SAY SAY SAYExecuting: " + say_command)
     os.system(say_command)
 
     return output_path

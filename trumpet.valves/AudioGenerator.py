@@ -3,7 +3,7 @@ from mutagen.mp3 import MP3
 
 
 def generate_audio(generated_voice, best_background_sample, output_path):
-    lower_volume = "ffmpeg -y -i " + best_background_sample + " -af volume=-10dB /Users/phillip/web/waves/audiodata/normalize.mp3"
+    lower_volume = "ffmpeg -y -i " + best_background_sample + " -af volume=-6dB /Users/phillip/web/waves/audiodata/normalize.mp3"
     # print(lower_volume)
 
     # normalize = "ffmpeg -y -i " + best_background_sample + " -filter:a loudnorm /Users/phillip/web/waves/audiodata/normalize.mp3"

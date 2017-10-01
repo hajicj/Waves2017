@@ -61,16 +61,29 @@ http.createServer(function (req, res) {
           
           // prepare response to format:
           // console.log(tweet.id);
+          var t = tweet.text,
+              x = tweet.id;
           
-          var ttext = new Buffer(tweet.text).toString('base64');
+          var ttext = new Buffer(t).toString('base64');
           
-          var fixedJson = '[{"py/object": "__main__.TwitterSnippet","start": 0,"end": 3,"text": "' + ttext + '","relevance": 0.5,"keywords": [{"py/object": "__main__.Keyword","word": "tweet","relevance": 0.9,"word2vec": [0.1,0.2,0.5,0.6]}],"background_samples": [{"py/object": "__main__.BackgroundSample","filename": "business-freedom_gjrmyusd.mp3","similarity": 0.665}],"voices": [{"py/object": "__main__.Voice","speaker": "Alex","similarity": 0.876}]}]';
+          var files = [
+            "dramatic-action-score_g1rgqeno.mp3",
+              "bizets-habanera_fylc2hsd.mp3",
+              "happy-groovy-power-pop_mjvh9neo.mp3"
+          ];
           
-          execSync('python3 ../trumpet.valves/Valves.py --json \'' + fixedJson + '\' --output_path /Users/phillip/web/waves/trumpet.output/mp3/' + tweet.id + ".mp3");
+          var file = files[Math.floor(Math.random()*files.length)];
+          
+          var fixedJson = '[{"py/object": "__main__.TwitterSnippet","start": 0,"end": 3,"text": "' + ttext + '","relevance": 0.5,"keywords": [{"py/object": "__main__.Keyword","word": "tweet","relevance": 0.9,"word2vec": [0.1,0.2,0.5,0.6]}],"background_samples": [{"py/object": "__main__.BackgroundSample","filename": "' + file + '","similarity": 0.665}],"voices": [{"py/object": "__main__.Voice","speaker": "Daniel","similarity": 0.876}]}]';
+          
+          var cmd = '/usr/local/bin/python3 ../trumpet.valves/Valves.py --json \'' + fixedJson + '\' --output_path /Users/phillip/web/waves/trumpet.output/mp3/' + x + ".mp3";
+          
+          console.log(cmd);
+          execSync(cmd);
           
           outputData.tweets.push({
-              "text": tweet.text,
-              "audio": tweet.id + ".mp3"
+              "text": t,
+              "audio": x + ".mp3"
           });
           
       });

@@ -18,6 +18,7 @@ def process_request(json: str, output_path: str) -> None:
 
 
 if __name__ == "__main__":
+    print("PYTHON GOT CALLED")
     parser = argparse.ArgumentParser()
     parser.add_argument("--json", type=str, default="Test.json",
                         help="The Base64-encoded JSON content to be parsed that must contain a list of ")

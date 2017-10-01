@@ -16,8 +16,8 @@ def load_twitter_snippets_from_json_path(json_path: str = "Test.json") -> List[T
 
 
 def load_twitter_snippets_from_json(json_string: str) -> List[TwitterSnippet]:
-    twitter_snippets = jsonpickle.decode(json_string)
     json_string = str(json_string).replace("'", '"')
+    twitter_snippets = jsonpickle.decode(json_string)
 
     for twitter_snippet in twitter_snippets:
         twitter_snippet.text = str(base64.b64decode(twitter_snippet.text))
