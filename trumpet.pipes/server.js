@@ -76,7 +76,7 @@ http.createServer(function (req, res) {
           
           var fixedJson = '[{"py/object": "__main__.TwitterSnippet","start": 0,"end": 3,"text": "' + ttext + '","relevance": 0.5,"keywords": [{"py/object": "__main__.Keyword","word": "tweet","relevance": 0.9,"word2vec": [0.1,0.2,0.5,0.6]}],"background_samples": [{"py/object": "__main__.BackgroundSample","filename": "' + file + '","similarity": 0.665}],"voices": [{"py/object": "__main__.Voice","speaker": "Daniel","similarity": 0.876}]}]';
           
-          var cmd = '/usr/local/bin/python3 ../trumpet.valves/Valves.py --json \'' + fixedJson + '\' --output_path /Users/phillip/web/waves/trumpet.output/mp3/' + x + ".mp3";
+          var cmd = '/usr/local/bin/python3 ../trumpet.valves/Valves.py --json \'' + fixedJson + '\' --output_path /Users/phillip/web/waves/trumpet.output/mp3/' + x + ".mp3" + " --audiodata_path /Users/phillip/web/waves/audiodata";
           
           console.log(cmd);
           execSync(cmd);
