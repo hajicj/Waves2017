@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import List
 
 from TwitterSnippet import TwitterSnippet, Keyword, Voice, BackgroundSample, VoiceSnippet
 

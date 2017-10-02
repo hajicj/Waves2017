@@ -1,9 +1,12 @@
 from typing import List
 
+import os
+
 from TwitterSnippet import TwitterSnippet, Keyword, Voice, BackgroundSample
 
 
-def select_best_background(twitter_snippets: List[TwitterSnippet]) -> str:
+def select_best_background(twitter_snippets: List[TwitterSnippet],
+                           audiodata_path: str) -> str:
     best_sample = None
     highest_similarity = 0
     for twitter_snippet in twitter_snippets:
@@ -12,7 +15,7 @@ def select_best_background(twitter_snippets: List[TwitterSnippet]) -> str:
                 best_sample = background_sample.filename
                 highest_similarity = background_sample.similarity
 
-    return "/Users/phillip/web/waves/audiodata/" + best_sample
+    return os.path.join(audiodata_path, best_sample)
 
 
 if __name__ == "__main__":
@@ -20,5 +23,5 @@ if __name__ == "__main__":
                                      [Voice("Susanne", 0.3), Voice("Hannes", 0.6)],
                                      [BackgroundSample("aggressive_mood.mp3", 0.3)])
 
-    background_sample = select_best_background([twitter_snippet])
+    background_sample = select_best_background([twitter_snippet], "../audiodata")
     print("Best background sample: {0}".format(background_sample))
