@@ -1,6 +1,8 @@
 # Waves2017
 Making the Twitter birds sing...
 
+This application was a winning hack from the Waves Vienna Music Hackday 2017, see http://www.hackathon.io/trumpet1 for the official entry.
+
 ```
 # start the word2vec-api service:
 # - Go to the word2vec-api directory,
